@@ -1,0 +1,51 @@
+// First, apply the publishing plugin
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "com.gradle.publish:plugin-publish-plugin:0.9.9"
+  }
+}
+
+apply plugin: "com.gradle.plugin-publish"
+apply plugin: 'groovy'
+// Apply other plugins here, e.g. java plugin for a plugin written in java or
+// the groovy plugin for a plugin written in groovy
+
+// If your plugin has any external java dependencies, Gradle will attempt to
+// downloaded them from JCenter for anyone using the plugins DSL
+// so you should probably use JCenter for dependency resolution in your own
+// project.
+repositories {
+  jcenter()
+}
+
+dependencies {
+  compile gradleApi()
+  compile localGroovy() //not needed for Java plugins
+  // other dependencies that your plugin requires
+}
+
+version = "0.1.0"
+group = "com.fdd.mvvmplugin"
+
+pluginBundle {
+  
+  website = 'https://github.com/tough1985/mvvmplugin'
+  vcsUrl = 'https://github.com/tough1985/mvvmplugin.git'
+
+  description = 'mvvm模板生成器'
+
+  plugins {
+
+    mvpPlugin {
+      id = 'com.fdd.mvvmplugin'
+      displayName = 'FDD MVVM plugin'
+      tags = ['android', 'mvvm']
+      version = '0.1.0'
+    }
+  }
+}
