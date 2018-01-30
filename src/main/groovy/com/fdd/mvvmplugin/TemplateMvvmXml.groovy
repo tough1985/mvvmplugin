@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+package com.fdd.mvvmplugin
+
+class TemplateMvvmXml {
+    //XML模板
+    def template = 
+'''<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
@@ -11,4 +16,5 @@
         android:layout_height="match_parent">
 
     </LinearLayout>
-</layout>
+</layout>'''
+}

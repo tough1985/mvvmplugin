@@ -1,4 +1,9 @@
-package ${applicaitionId}.${packageName}.fragment;
+package com.fdd.mvvmplugin
+
+class TemplateMvvmFragment {
+    //Contract模板
+    def template = 
+'''package ${applicaitionId}.${packageName}.fragment;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -61,4 +66,5 @@ public class ${functionName}Fragment extends BaseMvvmFragment<${functionName}VM>
 
     }
 
+}'''
 }

@@ -1,4 +1,9 @@
-package ${applicaitionId}.${packageName}.viewmodel;
+package com.fdd.mvvmplugin
+
+class TemplateViewModel {
+    //ViewModel模板
+    def template = 
+'''package ${applicaitionId}.${packageName}.viewmodel;
 
 import android.databinding.ObservableField;
 
@@ -22,4 +27,6 @@ public class ${functionName}VM extends BaseViewModel {
     protected void onCleared() {
         super.onCleared();
     }
+}
+'''
 }

@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
+
 class MvvmTask extends DefaultTask {
 
     @TaskAction
@@ -26,9 +27,14 @@ class MvvmTask extends DefaultTask {
 
         def xmlName = camel2Underline(functionName)
 
+        TemplateMvvmActivity templateMvvmActivity = new TemplateMvvmActivity()
+        TemplateMvvmFragment templateMvvmFragment = new TemplateMvvmFragment()
+        TemplateMvvmXml templateMvvmXml = new TemplateMvvmXml()
+        TemplateViewModel templateViewModel = new TemplateViewModel()
+        
 
-        println "generateMvvpFile : functionName=" + functionName
-        println "generateMvvpFile : xmlName=" + xmlName
+        println "generateMvvmFile : functionName=" + functionName
+        println "generateMvvmFile : xmlName=" + xmlName
 
 
         if (isViewActivity){
@@ -39,12 +45,12 @@ class MvvmTask extends DefaultTask {
 
         def mvvmArray = [
                 [
-                        templateName : "MvvmXml.template",
+                        template : templateMvvmXml.template,
                         type : "xml",
                         fileName : ".xml"
                 ],
                 [
-                        templateName : "ViewModel.template",
+                        template : templateViewModel.template,
                         type : "viewmodel",
                         fileName : "VM.java"
                 ]
@@ -52,7 +58,7 @@ class MvvmTask extends DefaultTask {
 
         if (isViewActivity){
             mvvmArray.add([
-                    templateName : "MvvmActivity.template",
+                    template : templateMvvmActivity.template,
                     type : "activity",
                     fileName : "Activity.java",
             ])
@@ -60,7 +66,7 @@ class MvvmTask extends DefaultTask {
 
         } else {
             mvvmArray.add([
-                    templateName : "MvpFragment.template",
+                    template : templateMvvmFragment.template,
                     type : "fragment",
                     fileName : "Fragment.java",
             ])
@@ -104,7 +110,7 @@ class MvvmTask extends DefaultTask {
 //        println "preGenerateFile : map.templateName=" + map.templateName
 //        println "preGenerateFile : map.type=" + map.type
 //        println "preGenerateFile : map.fileName=" + map.fileName
-        def template = makeTemplate(map.templateName, binding)
+        def template = makeTemplate(map.template, binding)
         def path
         def fileName
 
@@ -123,13 +129,13 @@ class MvvmTask extends DefaultTask {
     /**
      * 加载模板
      */
-    def makeTemplate(def templateName, def binding){
+    def makeTemplate(def template, def binding){
 
-        File f = new File("./buildSrc/mvvmplugin/template/" + templateName)
+        // File f = new File("./buildSrc/mvvmplugin/template/" + templateName)
 
         def engine = new groovy.text.GStringTemplateEngine()
 
-        return engine.createTemplate(f).make(binding)
+        return engine.createTemplate(template).make(binding)
     }
 
     /**

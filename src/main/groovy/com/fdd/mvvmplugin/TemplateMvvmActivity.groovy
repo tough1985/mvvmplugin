@@ -1,4 +1,9 @@
-package ${applicaitionId}.${packageName}.activity;
+package com.fdd.mvvmplugin
+
+class TemplateMvvmActivity {
+    //Contract模板
+    def template = 
+'''package ${applicaitionId}.${packageName}.activity;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -37,4 +42,6 @@ public class ${functionName}Activity extends BaseMvvmActivity<${functionName}VM>
         super.onResume();
     }
 
+}
+'''
 }

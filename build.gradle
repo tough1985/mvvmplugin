@@ -29,7 +29,7 @@ dependencies {
   // other dependencies that your plugin requires
 }
 
-version = "0.1.0"
+version = "0.1.1"
 group = "com.fdd.mvvmplugin"
 
 pluginBundle {
@@ -45,7 +45,7 @@ pluginBundle {
       id = 'com.fdd.mvvmplugin'
       displayName = 'FDD MVVM plugin'
       tags = ['android', 'mvvm']
-      version = '0.1.0'
+      version = '0.1.1'
     }
   }
 }
