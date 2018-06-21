@@ -1,4 +1,4 @@
-package com.fdd.mvvmplugin
+package com.fdd.mvvmplugin.templates
 
 class TemplateMvvmFragment {
     //Contract模板
