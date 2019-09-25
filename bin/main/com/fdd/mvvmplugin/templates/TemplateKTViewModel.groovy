@@ -1,9 +1,9 @@
 package com.fdd.mvvmplugin.templates
 
-class TemplateKTViewModel extends TemplateViewModel {
+class TemplateKTViewModel{
     // Kotlin MVVM ViewModel模板
     def template = 
-'''package ${applicaitionId}.${packageName}.viewmodel;
+'''package ${applicaitionId}.${packageName}.viewmodel
 
 import android.databinding.ObservableField
 import com.fangdd.mobile.mvvmcomponent.liveevent.SingleLiveEvent

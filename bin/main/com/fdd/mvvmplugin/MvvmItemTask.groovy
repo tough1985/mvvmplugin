@@ -1,5 +1,12 @@
 package com.fdd.mvvmplugin
 
+import com.fdd.mvvmplugin.templates.TemplateKTMvvmActivity
+import com.fdd.mvvmplugin.templates.TemplateKTMvvmFragment
+import com.fdd.mvvmplugin.templates.TemplateKTMvvmItemEvent
+import com.fdd.mvvmplugin.templates.TemplateKTMvvmItemVM
+import com.fdd.mvvmplugin.templates.TemplateKTMvvmListActivity
+import com.fdd.mvvmplugin.templates.TemplateKTMvvmListFragment
+import com.fdd.mvvmplugin.templates.TemplateKTViewModel
 import com.fdd.mvvmplugin.templates.TemplateMvvmXmlItem
 import com.fdd.mvvmplugin.templates.TemplateMvvmItemEvent
 import com.fdd.mvvmplugin.templates.TemplateMvvmItemVM
@@ -14,7 +21,7 @@ class MvvmItemTask extends DefaultTask {
 
         def mvvmExtension = project.extensions.getByType(MvvmExtension)
         //应用ID
-        def applicationId = mvvmExtension.applicationId;
+        def applicationId = mvvmExtension.applicationId
         //包名
         def packageName = mvvmExtension.packageName
         //功能名
@@ -28,10 +35,27 @@ class MvvmItemTask extends DefaultTask {
 
         def packageR = mvvmExtension.packageR
 
-        TemplateMvvmItemVM templateMvvmItemVM = new TemplateMvvmItemVM()
-        TemplateMvvmXmlItem templateItemXml = new TemplateMvvmXmlItem()
-        TemplateMvvmItemEvent templateMvvmItemEvent = new TemplateMvvmItemEvent()
+        def isKotlin = mvvmExtension.isKotlin
 
+        def postfixName
+
+        if (isKotlin) {
+            postfixName = ".kt"
+        } else {
+            postfixName = ".java"
+        }
+
+        def templateMvvmItemVM
+        def templateMvvmItemEvent
+        TemplateMvvmXmlItem templateItemXml = new TemplateMvvmXmlItem()
+
+        if (isKotlin) {
+            templateMvvmItemVM = new TemplateKTMvvmItemVM()
+            templateMvvmItemEvent = new TemplateKTMvvmItemEvent()
+        } else {
+            templateMvvmItemVM = new TemplateMvvmItemVM()
+            templateMvvmItemEvent = new TemplateMvvmItemEvent()
+        }
 
         println "generateMvvmFile : functionName=" + functionName
         println "generateMvvmFile : xmlName=" + xmlName
@@ -46,12 +70,12 @@ class MvvmItemTask extends DefaultTask {
                 [
                         template : templateMvvmItemVM.template,
                         type : "viewmodel",
-                        fileName : "ItemVM.java"
+                        fileName : "ItemVM" + postfixName
                 ],
                 [
                         template : templateMvvmItemEvent.template,
                         type : "event",
-                        fileName : "ItemEvent.java"
+                        fileName : "ItemEvent" + postfixName
                 ]
         ]
 

@@ -1,10 +1,11 @@
 package com.fdd.mvvmplugin.templates
 
-class TemplateKTMvvmActivity extends TemplateMvvmActivity {
+class TemplateKTMvvmActivity {
     // Kotlin MVVM Activity模板
     def template = 
 '''package ${applicaitionId}.${packageName}.activity
 
+import android.arch.lifecycle.Observer
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 
@@ -18,7 +19,7 @@ import ${applicaitionId}.${packageName}.viewmodel.${functionName}VM
  * @Date: ${date}
  * @Description:
  */
-class ${functionName}Activity : BaseMvvmActivity<${functionName}VM> {
+class ${functionName}Activity : BaseMvvmActivity<${functionName}VM>() {
 
     companion object {
         val TAG : String = ${functionName}Activity::class.java.simpleName
@@ -27,7 +28,7 @@ class ${functionName}Activity : BaseMvvmActivity<${functionName}VM> {
     private lateinit var mBinding: ${upperModuleName}Activity${functionName}Binding
 
     override fun getViewModelType(): Class<${functionName}VM> {
-        return ${functionName}VM.class
+        return ${functionName}VM::class.java
     }
 
     // ——————————————————————— ↓↓↓↓ <editor-fold desc="Lifecycle method"> ↓↓↓↓ ——————————————————————— //
@@ -36,7 +37,7 @@ class ${functionName}Activity : BaseMvvmActivity<${functionName}VM> {
         super.onCreate(savedInstanceState)
         
         mBinding = DataBindingUtil.setContentView(this, R.layout.${xmlName})
-        mBinding.viewmodel = viewModel
+        mBinding.viewModel = viewModel
 
         initTitle()
         

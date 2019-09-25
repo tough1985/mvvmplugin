@@ -44,7 +44,7 @@ public class ${functionName}Activity extends BaseMvvmActivity<${functionName}VM>
     //
     private ReDataBindingSubAdapter<Object, ${functionName}ItemVM> m${functionName}ItemAdapter;
     
-    private int mPageIndex = 1;
+    private int mPageIndex = 0;
 
     @Override
     public Class<${functionName}VM> getViewModelType() {
@@ -58,7 +58,7 @@ public class ${functionName}Activity extends BaseMvvmActivity<${functionName}VM>
         super.onCreate(savedInstanceState);
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.${xmlName});
-        mBinding.setViewmodel(getViewModel());
+        mBinding.setViewModel(getViewModel());
 
         initTitle();
         initRecyclerView();
@@ -125,7 +125,7 @@ public class ${functionName}Activity extends BaseMvvmActivity<${functionName}VM>
 
                 if (isShow) {
 
-                    if (mPageIndex == 1 && !mBinding.refreshLayout.isRefreshing()) {
+                    if (mPageIndex == 0 && !mBinding.refreshLayout.isRefreshing()) {
                         showLoadingDialog(false);
                     }
 
@@ -152,7 +152,7 @@ public class ${functionName}Activity extends BaseMvvmActivity<${functionName}VM>
 
     @Override
     public void onRefresh(FddRefreshLayout refreshLayout) {
-        mPageIndex = 1;
+        mPageIndex = 0;
     }
     // ———————————————————————————————————————————— ↑↑↑↑ </editor-fold> ↑↑↑↑ ———————————————————————————————————————————— //
 }

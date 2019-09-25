@@ -1,6 +1,6 @@
 package com.fdd.mvvmplugin.templates
 
-class TemplateKTMvvmListFragment extends TemplateMvvmListFragment {
+class TemplateKTMvvmListFragment{
     // Kotlin MVVM List Fragment模板
     def template =
 '''package ${applicaitionId}.${packageName}.fragment
@@ -19,7 +19,7 @@ import com.alibaba.android.vlayout.layout.LinearLayoutHelper
 import com.fangdd.mobile.base.utils.refreshmanager.FddRefreshVLayoutManager
 import com.fangdd.mobile.base.widgets.refresh.FddRefreshLayout
 import com.fangdd.mobile.base.widgets.refresh.listener.OnFddRefreshLoadMoreListener
-import com.fangdd.mobile.mvvmcomponent.activity.BaseMvvmFragment
+import com.fangdd.mobile.mvvmcomponent.fragment.BaseMvvmFragment
 import com.fangdd.mobile.mvvmcomponent.adapter.ReDataBindingSubAdapter
 import com.fangdd.mobile.mvvmcomponent.factory.SimpleViewModelFactory
 
@@ -64,7 +64,7 @@ class ${functionName}Fragment : BaseMvvmFragment<${functionName}VM>(), OnFddRefr
     }
 
     override fun getViewModelType(): Class<${functionName}VM> {
-        return ${functionName}VM.class
+        return ${functionName}VM::class.java
     }
 
     // ——————————————————————— ↓↓↓↓ <editor-fold desc="Lifecycle method"> ↓↓↓↓ ——————————————————————— //
@@ -75,7 +75,7 @@ class ${functionName}Fragment : BaseMvvmFragment<${functionName}VM>(), OnFddRefr
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.${xmlName}, container, false)
-        mBinding.viewmodel = viewModel
+        mBinding.viewModel = viewModel
         return mBinding.root
     }
 

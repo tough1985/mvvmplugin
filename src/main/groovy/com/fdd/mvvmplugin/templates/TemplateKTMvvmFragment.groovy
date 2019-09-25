@@ -1,6 +1,6 @@
 package com.fdd.mvvmplugin.templates
 
-class TemplateKTMvvmFragment extends TemplateMvvmFragment {
+class TemplateKTMvvmFragment{
     // Kotlin MVVM Fragment模板
     def template = 
 '''package ${applicaitionId}.${packageName}.fragment
@@ -23,7 +23,7 @@ import ${applicaitionId}.${packageName}.viewmodel.${functionName}VM
  * @Date: ${date}
  * @Description:
  */
-class ${functionName}Fragment : BaseMvvmFragment<${functionName}VM> {
+class ${functionName}Fragment : BaseMvvmFragment<${functionName}VM>() {
 
     companion object {
         val TAG : String = ${functionName}Fragment::class.java.simpleName
@@ -44,7 +44,7 @@ class ${functionName}Fragment : BaseMvvmFragment<${functionName}VM> {
     }
 
     override fun getViewModelType(): Class<${functionName}VM> {
-        return ${functionName}VM.class
+        return ${functionName}VM::class.java
     }
 
     // ——————————————————————— ↓↓↓↓ <editor-fold desc="Lifecycle method"> ↓↓↓↓ ——————————————————————— //
@@ -55,7 +55,7 @@ class ${functionName}Fragment : BaseMvvmFragment<${functionName}VM> {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.${xmlName}, container, false)
-        mBinding.viewmodel = viewModel
+        mBinding.viewModel = viewModel
         return mBinding.root
     }
 

@@ -1,6 +1,6 @@
 package com.fdd.mvvmplugin.templates
 
-class TemplateKTMvvmListActivity extends TemplateMvvmListActivity {
+class TemplateKTMvvmListActivity{
     // Kotlin MVVM List Activity模板
     def template =
 '''package ${applicaitionId}.${packageName}.activity
@@ -48,7 +48,7 @@ class ${functionName}Activity : BaseMvvmActivity<${functionName}VM>(), OnFddRefr
     private var mPageIndex = 0
 
     override fun getViewModelType(): Class<${functionName}VM> {
-        return ${functionName}VM.class
+        return ${functionName}VM::class.java
     }
 
     // ——————————————————————— ↓↓↓↓ <editor-fold desc="Lifecycle method"> ↓↓↓↓ ——————————————————————— //
@@ -57,7 +57,7 @@ class ${functionName}Activity : BaseMvvmActivity<${functionName}VM>(), OnFddRefr
         super.onCreate(savedInstanceState)
         
         mBinding = DataBindingUtil.setContentView(this, R.layout.${xmlName})
-        mBinding.viewmodel = viewModel
+        mBinding.viewModel = viewModel
 
         initTitle()
         initRecyclerView()

@@ -13,7 +13,7 @@ class TemplateMvvmXmlActivity {
     
     <data>
         <variable
-            name="viewmodel"
+            name="viewModel"
             type="${applicaitionId}.${packageName}.viewmodel.${functionName}VM"/>
     </data>
     <LinearLayout

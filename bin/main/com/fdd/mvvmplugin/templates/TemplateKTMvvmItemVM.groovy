@@ -1,6 +1,6 @@
 package com.fdd.mvvmplugin.templates
 
-class TemplateKTMvvmItemVM extends TemplateMvvmItemVM {
+class TemplateKTMvvmItemVM{
     // Kotlin MVVM Item ViewModel模板
     def template =
 '''package ${applicaitionId}.${packageName}.viewmodel
@@ -16,7 +16,7 @@ import com.fangdd.mobile.mvvmcomponent.viewmodel.BaseAdapterViewModel
  */
 class ${functionName}ItemVM : BaseAdapterViewModel<Object>() {
 
-    val itemOf = ObservableField<>()
+    val itemOf = ObservableField<Object>()
     
     //在列表中的索引
     var index: Int = 0
@@ -27,19 +27,21 @@ class ${functionName}ItemVM : BaseAdapterViewModel<Object>() {
     }
     
 //    private lateinit var m${functionName}ItemAdapter: ReDataBindingSubAdapter<Object, ${functionName}ItemVM>
-//    /**
-//     * 初始化item adapter
-//     */
-//    private fun init${functionName}ListAdapter() {
-//        m${functionName}ItemAdapter = ReDataBindingSubAdapter(
-//                LinearLayoutHelper(),
-//                BR.viewModel,
-//                R.layout.${listXmlName},
-//                BR.itemEvent,
-//                ${functionName}ItemEvent(),
-//                SimpleViewModelFactory<${functionName}ItemVM>(${functionName}ItemVM.class));
-//        vLayoutManager.addAdapter(m${functionName}ItemAdapter)
-//    }
+    // /**
+    //  * 初始化item adapter
+    //  */
+    // private fun init${functionName}ListAdapter() {
+
+    //     m${functionName}ItemAdapter = ReDataBindingSubAdapter(
+    //             LinearLayoutHelper(),
+    //             BR.viewModel,
+    //             R.layout.${listXmlName},
+    //             BR.itemEvent,
+    //             ${functionName}ItemEvent(),
+    //             SimpleViewModelFactory<${functionName}ItemVM>(${functionName}ItemVM::class.java)
+    //     )
+    //     vLayoutManager.addAdapter(m${functionName}ItemAdapter)
+    // }
 
 }
 '''

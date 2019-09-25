@@ -11,6 +11,15 @@ import com.fdd.mvvmplugin.templates.TemplateViewModel
 import com.fdd.mvvmplugin.templates.TemplateMvvmXmlItem
 import com.fdd.mvvmplugin.templates.TemplateMvvmItemEvent
 import com.fdd.mvvmplugin.templates.TemplateMvvmItemVM
+
+import com.fdd.mvvmplugin.templates.TemplateKTMvvmActivity
+import com.fdd.mvvmplugin.templates.TemplateKTMvvmFragment
+import com.fdd.mvvmplugin.templates.TemplateKTMvvmListActivity
+import com.fdd.mvvmplugin.templates.TemplateKTMvvmListFragment
+import com.fdd.mvvmplugin.templates.TemplateKTViewModel
+import com.fdd.mvvmplugin.templates.TemplateKTMvvmItemEvent
+import com.fdd.mvvmplugin.templates.TemplateKTMvvmItemVM
+
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
@@ -42,28 +51,54 @@ class MvvmTask extends DefaultTask {
 
         def isKotlin = mvvmExtension.isKotlin
 
-        TemplateMvvmActivity templateMvvmActivity
-        TemplateMvvmFragment templateMvvmFragment = new TemplateMvvmFragment()
+        def postfixName
+
         if (isKotlin) {
-            templateMvvmActivity = new TemplateKTMvvmActivity()
+            postfixName = ".kt"
         } else {
-            templateMvvmActivity = new TemplateMvvmActivity()
+            postfixName = ".java"
         }
 
-        
+        def templateMvvmActivity
+        def templateMvvmFragment
+        def templateViewModel
+
+        def templateMvvmListActivity
+        def templateMvvmListFragment
+
+        def templateMvvmItemVM
+        def templateMvvmItemEvent
 
         TemplateMvvmXmlActivity templateMvvmXml = new TemplateMvvmXmlActivity()
         TemplateMvvmXmlFragment templateMvvmXmlFragment = new TemplateMvvmXmlFragment()
-
-        TemplateViewModel templateViewModel = new TemplateViewModel()
-
-        TemplateMvvmItemVM templateMvvmItemVM = new TemplateMvvmItemVM()
-        TemplateMvvmXmlItem templateItemXml = new TemplateMvvmXmlItem()
-        TemplateMvvmItemEvent templateMvvmItemEvent = new TemplateMvvmItemEvent()
-
-        TemplateMvvmListActivity templateMvvmListActivity = new TemplateMvvmListActivity()
         TemplateMvvmXmlListActivity templateMvvmListActivityXml = new TemplateMvvmXmlListActivity()
-        TemplateMvvmListFragment templateMvvmListFragment = new TemplateMvvmListFragment();
+        TemplateMvvmXmlItem templateItemXml = new TemplateMvvmXmlItem()
+
+
+        if (isKotlin) {
+            templateMvvmActivity = new TemplateKTMvvmActivity()
+            templateMvvmFragment = new TemplateKTMvvmFragment()
+
+            templateViewModel = new TemplateKTViewModel()
+
+            templateMvvmListActivity = new TemplateKTMvvmListActivity()
+            templateMvvmListFragment = new TemplateKTMvvmListFragment()
+
+            templateMvvmItemVM = new TemplateKTMvvmItemVM()
+            templateMvvmItemEvent = new TemplateKTMvvmItemEvent()
+
+        } else {
+            templateMvvmActivity = new TemplateMvvmActivity()
+            templateMvvmFragment = new TemplateMvvmFragment()
+
+            templateViewModel = new TemplateViewModel()
+
+            templateMvvmListActivity = new TemplateMvvmListActivity()
+            templateMvvmListFragment = new TemplateMvvmListFragment()
+
+            templateMvvmItemVM = new TemplateMvvmItemVM()
+            templateMvvmItemEvent = new TemplateMvvmItemEvent()
+        }
 
         println "generateMvvmFile : functionName=" + functionName
         println "generateMvvmFile : xmlName=" + xmlName
@@ -79,7 +114,7 @@ class MvvmTask extends DefaultTask {
                 [
                         template : templateViewModel.template,
                         type : "viewmodel",
-                        fileName : "VM.java"
+                        fileName : "VM" + postfixName
                 ]
         ]
 
@@ -90,7 +125,7 @@ class MvvmTask extends DefaultTask {
                 mvvmArray.add([
                         template : templateMvvmListActivity.template,
                         type : "activity",
-                        fileName : "Activity.java",
+                        fileName : "Activity"  + postfixName,
                 ])
 
                 mvvmArray.add([
@@ -103,7 +138,7 @@ class MvvmTask extends DefaultTask {
                 mvvmArray.add([
                         template : templateMvvmActivity.template,
                         type : "activity",
-                        fileName : "Activity.java",
+                        fileName : "Activity" + postfixName,
                 ])
 
                 mvvmArray.add([
@@ -119,7 +154,7 @@ class MvvmTask extends DefaultTask {
                 mvvmArray.add([
                         template : templateMvvmListFragment.template,
                         type : "fragment",
-                        fileName : "Fragment.java",
+                        fileName : "Fragment" + postfixName,
                 ])
                 mvvmArray.add([
                         template : templateMvvmListActivityXml.template,
@@ -130,7 +165,7 @@ class MvvmTask extends DefaultTask {
                 mvvmArray.add([
                         template : templateMvvmFragment.template,
                         type : "fragment",
-                        fileName : "Fragment.java",
+                        fileName : "Fragment" + postfixName,
                 ])
                 mvvmArray.add([
                         template : templateMvvmXmlFragment.template,
@@ -151,12 +186,12 @@ class MvvmTask extends DefaultTask {
             mvvmArray.add([
                     template : templateMvvmItemVM.template,
                     type : "viewmodel",
-                    fileName : "ItemVM.java"
+                    fileName : "ItemVM" + postfixName
             ])
             mvvmArray.add([
                     template : templateMvvmItemEvent.template,
                     type : "event",
-                    fileName : "ItemEvent.java"
+                    fileName : "ItemEvent" + postfixName
             ])
         }
 
@@ -230,8 +265,6 @@ class MvvmTask extends DefaultTask {
 
         PluginUtil.generateFile(path, fileName, template)
     }
-
-
 
     /**
      * 生成item xml文件名称

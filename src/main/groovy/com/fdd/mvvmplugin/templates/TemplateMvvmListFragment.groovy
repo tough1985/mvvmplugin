@@ -79,7 +79,7 @@ public class ${functionName}Fragment extends BaseMvvmFragment<${functionName}VM>
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = ${upperModuleName}Fragment${functionName}Binding.inflate(inflater, container, false);
-        mBinding.setViewmodel(getViewModel());
+        mBinding.setViewModel(getViewModel());
         return mBinding.getRoot();
     }
 

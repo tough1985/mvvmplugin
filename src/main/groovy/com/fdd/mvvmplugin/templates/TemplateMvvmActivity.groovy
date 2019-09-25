@@ -37,7 +37,7 @@ public class ${functionName}Activity extends BaseMvvmActivity<${functionName}VM>
         super.onCreate(savedInstanceState);
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.${xmlName});
-        mBinding.setViewmodel(getViewModel());
+        mBinding.setViewModel(getViewModel());
 
         initTitle();
         
