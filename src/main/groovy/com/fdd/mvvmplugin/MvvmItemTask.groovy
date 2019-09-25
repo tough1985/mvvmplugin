@@ -26,6 +26,8 @@ class MvvmItemTask extends DefaultTask {
 
         def xmlName = PluginUtil.camel2Underline(functionName)
 
+        def packageR = mvvmExtension.packageR
+
         TemplateMvvmItemVM templateMvvmItemVM = new TemplateMvvmItemVM()
         TemplateMvvmXmlItem templateItemXml = new TemplateMvvmXmlItem()
         TemplateMvvmItemEvent templateMvvmItemEvent = new TemplateMvvmItemEvent()
@@ -69,7 +71,8 @@ class MvvmItemTask extends DefaultTask {
                 author          : author,
                 xmlName         : xmlName,
                 moduleName      : moduleName,
-                listXmlName     : listXmlName
+                listXmlName     : listXmlName,
+                packageR        : packageR
         ];
 
         println "mvvmExtension.applicationId=" + mvvmExtension.applicationId

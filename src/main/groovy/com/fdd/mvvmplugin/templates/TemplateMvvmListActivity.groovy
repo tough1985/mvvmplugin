@@ -19,9 +19,9 @@ import com.fangdd.mobile.mvvmcomponent.activity.BaseMvvmActivity;
 import com.fangdd.mobile.mvvmcomponent.adapter.ReDataBindingSubAdapter;
 import com.fangdd.mobile.mvvmcomponent.factory.SimpleViewModelFactory;
 
-import ${applicaitionId}.BR;
-import ${applicaitionId}.R;
-import ${applicaitionId}.databinding.${upperModuleName}Activity${functionName}Binding;
+import ${packageR}.BR;
+import ${packageR}.R;
+import ${packageR}.databinding.${upperModuleName}Activity${functionName}Binding;
 import ${applicaitionId}.${packageName}.viewmodel.${functionName}VM;
 import ${applicaitionId}.${packageName}.viewmodel.${functionName}ItemVM;
 import ${applicaitionId}.${packageName}.event.${functionName}ItemEvent;

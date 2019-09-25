@@ -1,52 +1,50 @@
 package com.fdd.mvvmplugin.templates
 
-class TemplateMvvmActivity {
-    //Contract模板
+class TemplateKTMvvmActivity extends TemplateMvvmActivity {
+    // Kotlin MVVM Activity模板
     def template = 
-'''package ${applicaitionId}.${packageName}.activity;
+'''package ${applicaitionId}.${packageName}.activity
 
-import android.databinding.DataBindingUtil;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.databinding.DataBindingUtil
+import android.os.Bundle
 
-import ${packageR}.R;
-import ${packageR}.databinding.${upperModuleName}Activity${functionName}Binding;
-import com.fangdd.mobile.mvvmcomponent.activity.BaseMvvmActivity;
-import ${applicaitionId}.${packageName}.viewmodel.${functionName}VM;
+import ${packageR}.R
+import ${packageR}.databinding.${upperModuleName}Activity${functionName}Binding
+import com.fangdd.mobile.mvvmcomponent.activity.BaseMvvmActivity
+import ${applicaitionId}.${packageName}.viewmodel.${functionName}VM
 
 /**
  * @Author: ${author}
  * @Date: ${date}
  * @Description:
  */
-public class ${functionName}Activity extends BaseMvvmActivity<${functionName}VM> {
+class ${functionName}Activity : BaseMvvmActivity<${functionName}VM> {
 
-    public static final String TAG = ${functionName}Activity.class.getSimpleName();
+    companion object {
+        val TAG : String = ${functionName}Activity::class.java.simpleName
+    }
 
-    private ${upperModuleName}Activity${functionName}Binding mBinding;
+    private lateinit var mBinding: ${upperModuleName}Activity${functionName}Binding
 
-    @Override
-    public Class<${functionName}VM> getViewModelType() {
-        return ${functionName}VM.class;
+    override fun getViewModelType(): Class<${functionName}VM> {
+        return ${functionName}VM.class
     }
 
     // ——————————————————————— ↓↓↓↓ <editor-fold desc="Lifecycle method"> ↓↓↓↓ ——————————————————————— //
     
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        mBinding = DataBindingUtil.setContentView(this, R.layout.${xmlName});
-        mBinding.setViewmodel(getViewModel());
-
-        initTitle();
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         
-        initLiveData();
+        mBinding = DataBindingUtil.setContentView(this, R.layout.${xmlName})
+        mBinding.viewmodel = viewModel
+
+        initTitle()
+        
+        initLiveData()
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    override fun onResume() {
+        super.onResume()
     }
    
     // ———————————————————————————————————————————— ↑↑↑↑ </editor-fold> ↑↑↑↑ ———————————————————————————————————————————— //
@@ -55,10 +53,10 @@ public class ${functionName}Activity extends BaseMvvmActivity<${functionName}VM>
     /**
      * 初始化标题栏
      */
-    public void initTitle(){
-        initTitleBar(mBinding.titleBar, false);
-        String title = "";
-        setTitleBarWithTitleAndDefaultLeft(title, null);
+    private fun initTitle(){
+        initTitleBar(mBinding.titleBar, false)
+        val title = ""
+        setTitleBarWithTitleAndDefaultLeft(title, null)
     }
     // ———————————————————————————————————————————— ↑↑↑↑ </editor-fold> ↑↑↑↑ ———————————————————————————————————————————— //
     
@@ -66,8 +64,17 @@ public class ${functionName}Activity extends BaseMvvmActivity<${functionName}VM>
     /**
      * 初始化LiveData
      */
-    private void initLiveData(){
-        
+    private fun initLiveData(){
+
+        viewModel.showLoading.observe(this, Observer { show ->
+            show?.let {
+                if (show) {
+                    showLoadingDialog(false)
+                } else {
+                    dismissLoadingDialog()
+                }
+            }
+        })
     }
     // ———————————————————————————————————————————— ↑↑↑↑ </editor-fold> ↑↑↑↑ ———————————————————————————————————————————— //
 }

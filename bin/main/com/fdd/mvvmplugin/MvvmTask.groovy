@@ -40,8 +40,17 @@ class MvvmTask extends DefaultTask {
 
         def packageR = mvvmExtension.packageR
 
-        TemplateMvvmActivity templateMvvmActivity = new TemplateMvvmActivity()
+        def isKotlin = mvvmExtension.isKotlin
+
+        TemplateMvvmActivity templateMvvmActivity
         TemplateMvvmFragment templateMvvmFragment = new TemplateMvvmFragment()
+        if (isKotlin) {
+            templateMvvmActivity = new TemplateKTMvvmActivity()
+        } else {
+            templateMvvmActivity = new TemplateMvvmActivity()
+        }
+
+        
 
         TemplateMvvmXmlActivity templateMvvmXml = new TemplateMvvmXmlActivity()
         TemplateMvvmXmlFragment templateMvvmXmlFragment = new TemplateMvvmXmlFragment()

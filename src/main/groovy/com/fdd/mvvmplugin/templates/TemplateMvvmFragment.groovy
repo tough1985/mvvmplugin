@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fangdd.mobile.mvvmcomponent.fragment.BaseMvvmFragment;
-import ${applicaitionId}.databinding.Fragment${functionName}Binding;
+import ${packageR}.databinding.Fragment${functionName}Binding;
 import ${applicaitionId}.${packageName}.viewmodel.${functionName}VM;
 
 /**

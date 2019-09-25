@@ -21,9 +21,9 @@ import com.fangdd.mobile.mvvmcomponent.fragment.BaseMvvmFragment;
 import com.fangdd.mobile.mvvmcomponent.adapter.ReDataBindingSubAdapter;
 import com.fangdd.mobile.mvvmcomponent.factory.SimpleViewModelFactory;
 
-import ${applicaitionId}.BR;
-import ${applicaitionId}.R;
-import ${applicaitionId}.databinding.${upperModuleName}Fragment${functionName}Binding;
+import ${packageR}.BR;
+import ${packageR}.R;
+import ${packageR}.databinding.${upperModuleName}Fragment${functionName}Binding;
 import ${applicaitionId}.${packageName}.viewmodel.${functionName}VM;
 import ${applicaitionId}.${packageName}.viewmodel.${functionName}ItemVM;
 import ${applicaitionId}.${packageName}.event.${functionName}ItemEvent;

@@ -38,6 +38,8 @@ class MvvmTask extends DefaultTask {
 
         def xmlName = PluginUtil.camel2Underline(functionName)
 
+        def packageR = mvvmExtension.packageR
+
         TemplateMvvmActivity templateMvvmActivity = new TemplateMvvmActivity()
         TemplateMvvmFragment templateMvvmFragment = new TemplateMvvmFragment()
 
@@ -170,7 +172,8 @@ class MvvmTask extends DefaultTask {
                 xmlName         : xmlName,
                 moduleName      : moduleName,
                 listXmlName     : listXmlName,
-                upperModuleName : upperModuleName
+                upperModuleName : upperModuleName,
+                packageR        : packageR
         ]
 
         println "mvvmExtension.applicationId=" + mvvmExtension.applicationId
@@ -228,11 +231,11 @@ class MvvmTask extends DefaultTask {
      * @return
      */
     String generateItemXmlName(def moduleName, def functionName){
-        def xmlModuleName
+        def xmlModuleName = ""
         if (moduleName != null && !moduleName.equals("")){
             xmlModuleName = PluginUtil.camel2Underline(moduleName) + "_"
         }
-        def listXmlName = xmlModuleName + "item_" +PluginUtil.camel2Underline(functionName)
+        def listXmlName = xmlModuleName + "item_" + PluginUtil.camel2Underline(functionName)
         return listXmlName
     }
 

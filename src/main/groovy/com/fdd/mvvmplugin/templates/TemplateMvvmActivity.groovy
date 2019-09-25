@@ -9,9 +9,9 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import ${applicaitionId}.R;
+import ${packageR}.R;
+import ${packageR}.databinding.${upperModuleName}Activity${functionName}Binding;
 import com.fangdd.mobile.mvvmcomponent.activity.BaseMvvmActivity;
-import ${applicaitionId}.databinding.${upperModuleName}Activity${functionName}Binding;
 import ${applicaitionId}.${packageName}.viewmodel.${functionName}VM;
 
 /**
